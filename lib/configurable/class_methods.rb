@@ -44,6 +44,8 @@ module Configurable
     #
     def load_configuration(environment, overrides={})
       config = {}
+
+      sanity_check(overrides)
       default_config.options.each do |key, default|
 
         if default.instance_of?(ConfigFile)
@@ -71,6 +73,14 @@ module Configurable
     private
 
     attr_reader :default_config
+
+    def sanity_check(overrides)
+      overrides.keys.each do |key|
+        unless default_config.options.keys.include?(key)
+          raise Error, "cannot override nonexistent config setting #{key.inspect}"
+        end
+      end
+    end
 
   end
 

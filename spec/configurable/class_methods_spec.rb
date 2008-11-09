@@ -103,6 +103,12 @@ describe Configurable::ClassMethods do
       config[:io].should equal(io)
     end
 
+    it "raises an exception if a nonexistent config default is overridden" do
+      lambda do
+        @test_module.load_configuration("production", :nonexistent => "stuff")
+      end.should raise_error(Configurable::Error, /cannot override.*:nonexistent/i)
+    end
+
   end
 
 end
