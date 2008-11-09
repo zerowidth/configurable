@@ -48,3 +48,10 @@ end  # module Configurable
 require "yaml"
 
 Configurable.require_all_libs_relative_to(__FILE__)
+
+# reopen it now that ClassMethods is defined
+module Configurable
+  def self.included(receiver)
+    receiver.extend ClassMethods
+  end
+end
