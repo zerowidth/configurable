@@ -7,6 +7,8 @@ module Configurable
   PATH = ::File.dirname(LIBPATH) + ::File::SEPARATOR
   # :startdoc:
 
+  class Error < StandardError; end
+
   # Returns the version string for the library.
   #
   def self.version
@@ -37,13 +39,12 @@ module Configurable
   def self.require_all_libs_relative_to( fname, dir = nil )
     dir ||= ::File.basename(fname, '.*')
     search_me = ::File.expand_path(
-        ::File.join(::File.dirname(fname), dir, '*', '*.rb'))
-
+        ::File.join(::File.dirname(fname), dir, '*.rb'))
     Dir.glob(search_me).sort.each {|rb| require rb}
   end
 
 end  # module Configurable
 
-Configurable.require_all_libs_relative_to(__FILE__)
+require "yaml"
 
-# EOF
+Configurable.require_all_libs_relative_to(__FILE__)

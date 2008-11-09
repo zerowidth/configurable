@@ -1,0 +1,7 @@
+---
+production:
+  foo: production
+  bar: prod_value
+test:
+  foo: test
+  bar: test_value

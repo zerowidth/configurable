@@ -1,0 +1,7 @@
+---
+production:
+  foo: alt
+  bar: prod
+test:
+  foo: alt_test
+  bar: test
