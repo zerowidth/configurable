@@ -9,13 +9,15 @@ Configurable is a simple configuration description and loading mechanism for you
 
 Configurable makes it easy to set default values for a configuration setup and then easily load and override those default settings. It supports YAML config files, either simple data or environment-based with environment name/value groupings like rails' database.yml.
 
+This code was extracted from a production framework, where it manages configuration defaults and initialization for a base gem along with several supporting gems which add new features and config settings to the initialization process.
+
 == FEATURES/PROBLEMS:
 
 * Describe defaults, including config file paths and settings
 * Load a configuration from the specified defaults with easy overrides
-* Environment-aware, rails-style, so you can have multiple environments in your configuration files
-* Easy to add on additional configuration options from additional supporting libraries that need to hook into the config-driven initialization process
-* Access to alternate configurations from environment-based config files
+* Environment-aware config files, rails-style, so you can have multiple environments in your configuration files
+* Easy to add on additional configuration options from supporting code that need to hook into the config initialization process
+* Access to alternate configurations for settings loaded from environment-based config files
 
 == SYNOPSIS:
 
@@ -65,7 +67,7 @@ Configurable makes it easy to set default values for a configuration setup and t
 
 == REQUIREMENTS:
 
-Ruby.
+* mrbones for development
 
 == INSTALL:
 
