@@ -1,4 +1,6 @@
 == 1.0.0 / 2008-11-09
 
 * 1 major enhancement
-  * Birthday!
+  * Birthday! Initial extraction from another project
+* 1 minor enhancement
+  * Sanity check to disallow override of nonexistent config settings
