@@ -22,3 +22,4 @@ PROJ.version = Configurable::VERSION
 PROJ.rubyforge.name = 'configurable'
 
 PROJ.spec.opts << '--color --format specdoc'
+PROJ.ruby_opts = []

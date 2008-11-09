@@ -5,23 +5,71 @@ configurable
 
 == DESCRIPTION:
 
-FIXME (describe your package)
+Configurable is a simple configuration description and loading mechanism for your modules or classes.
+
+Configurable makes it easy to set default values for a configuration setup and then easily load and override those default settings. It supports YAML config files, either simple data or environment-based with environment name/value groupings like rails' database.yml.
 
 == FEATURES/PROBLEMS:
 
-* FIXME (list of features or problems)
+* Describe defaults, including config file paths and settings
+* Load a configuration from the specified defaults with easy overrides
+* Environment-aware, rails-style, so you can have multiple environments in your configuration files
+* Easy to add on additional configuration options from additional supporting libraries that need to hook into the config-driven initialization process
+* Access to alternate configurations from environment-based config files
 
 == SYNOPSIS:
 
-  FIXME (code sample of usage)
+  require "configurable"
+
+  class MyScript
+    include Configurable
+
+    # set up the defaults
+    default_configuration do |config|
+      config.option :database, "database.yml", :config_file => true
+      config.option :log_level, :info
+      config.option :output_location, "/tmp"
+    end
+
+    attr_reader :config
+
+    def initialize(environment, overrides={})
+      # load the configuration using the provided environment and override values
+      @config = self.class.load_configuration(environment, overrides)
+    end
+
+  end
+
+  # simple operation:
+  a = MyScript.new("production")
+  a.config[:database] #=> {"user" => "bob", "host" => "production-db"...}
+  a.config[:log_level] #=> :info
+
+  # override default settings
+  b = MyScript.new "production", :log_level => :debug, :database => "other_db_config.yml"
+  b.config[:log_level] #=> :debug
+  b.config[:database] #=> {"user" => "fred", "host" => "other-db" ...}
+
+  # or override the config file settings directly
+  b = MyScript.new "production", :database => {"user" => "overridden", "host" => "owned"}
+  b.config[:database] #=> {"user" => "overridden", "host" => "owned"}
+
+  # add a new setting:
+  MyScript.default_configuration { |config| config.option :flag, false }
+  MyScript.new.config[:flag] #=> false
+
+  # retrieve an alternate configuration from an environment-based config file
+  a = MyScript.new("production")
+  a.config[:database] #=> {"user" => "bob", "host" => "production-db", ...}
+  a.config[:database].alternate("development") #=> {"user" => "joe", "host" => "development-db", ...}
 
 == REQUIREMENTS:
 
-* FIXME (list of requirements)
+Ruby.
 
 == INSTALL:
 
-* FIXME (sudo gem install, anything else)
+  sudo gem install aniero-configurable --source http://gems.github.com
 
 == LICENSE:
 
