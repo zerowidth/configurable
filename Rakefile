@@ -15,12 +15,10 @@ require 'configurable'
 task :default => 'spec:run'
 
 PROJ.name = 'configurable'
-PROJ.authors = 'FIXME (who is writing this software)'
-PROJ.email = 'FIXME (your e-mail)'
-PROJ.url = 'FIXME (project homepage)'
+PROJ.authors = 'Nathan Witmer'
+PROJ.email = 'nwitmer@gmail.com'
+PROJ.url = 'http://github.com/aniero/configurable'
 PROJ.version = Configurable::VERSION
 PROJ.rubyforge.name = 'configurable'
 
-PROJ.spec.opts << '--color'
-
-# EOF
+PROJ.spec.opts << '--color --format specdoc'

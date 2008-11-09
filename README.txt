@@ -1,6 +1,7 @@
 configurable
-    by FIXME (your name)
-    FIXME (url)
+    by Nathan Witmer
+    http://zerowidth.com
+    http://github.com/aniero/configurable
 
 == DESCRIPTION:
 
@@ -26,7 +27,7 @@ FIXME (describe your package)
 
 (The MIT License)
 
-Copyright (c) 2008 FIXME (different license?)
+Copyright (c) 2008 Nathan Witmer
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
